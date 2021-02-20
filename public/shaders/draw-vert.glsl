@@ -1,5 +1,3 @@
-#version 300 es
- 
 attribute vec2 a_pos;
 uniform mat3 u_proj_mat;
 

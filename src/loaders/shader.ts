@@ -1,7 +1,6 @@
 export const fetchShader = async (source: string) => {
   const shader = await fetch('/shaders/' + source).then((res) => res.text());
-  console.log('/shaders/' + source);
-  console.log(shader);
+
   return shader;
 };
 
@@ -35,6 +34,7 @@ export const initShaderFiles = async (
     gl.VERTEX_SHADER,
     vertexShaderSource
   );
+
   const fragmentShader = await createShader(
     gl,
     gl.FRAGMENT_SHADER,
