@@ -11,21 +11,13 @@
     </div>
     <div>
       <template v-if="draw === '1'">
-<<<<<<< HEAD
         <Canvas />
-=======
-        <h3>Halo Garis</h3>
->>>>>>> c8bf1fe (Fix linting)
       </template>
       <template v-else-if="draw === '2'">
         <Persegi />
       </template>
       <template v-else-if="draw === '3'">
-<<<<<<< HEAD
         <Poligon />
-=======
-        <h3>Halo Poligon</h3>
->>>>>>> c8bf1fe (Fix linting)
       </template>
     </div>
   </div>
@@ -34,7 +26,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, onUpdated, ref } from 'vue';
 import Persegi from './components/Persegi.vue';
-<<<<<<< HEAD
 import Canvas from './components/Canvas.vue';
 import Poligon from './components/Poligon.vue';
 
@@ -45,12 +36,6 @@ export default defineComponent({
     Canvas,
     Poligon,
   },
-=======
-
-export default defineComponent({
-  name: 'App',
-  components: { Persegi },
->>>>>>> c8bf1fe (Fix linting)
   setup() {
     const draw = ref('');
     onMounted(() => {
