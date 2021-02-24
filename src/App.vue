@@ -8,6 +8,8 @@
       <label for="persegi">Persegi</label>
       <input type="radio" id="poligon" value="3" v-model="draw" />
       <label for="poligon">Poligon</label>
+      <input type="radio" id="help" value="4" v-model="draw" />
+      <label for="help">Help</label>
     </div>
     <div>
       <template v-if="draw === '1'">
@@ -18,6 +20,17 @@
       </template>
       <template v-else-if="draw === '3'">
         <Poligon />
+      </template>
+      <template v-else-if="draw === '4'">
+        <h3>HELP</h3>
+        <p>Pilih bangun yang Anda inginkan (Garis, Persegi, Poligon)</p>
+        <br />
+        <p>
+          Scroll ke bawah dan pilih mode yang Anda inginkan (Geser, Rotate,
+          Scale)
+        </p>
+        <br />
+        <p>Sekian. Selamat mencoba!</p>
       </template>
     </div>
   </div>
