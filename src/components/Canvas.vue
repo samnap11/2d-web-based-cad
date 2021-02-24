@@ -27,7 +27,7 @@ export default defineComponent({
   name: 'Canvas',
   setup() {
     // const triangleData = ref([0.1, 0.1, 1.0, 0.0, 1.0, 1.0]);
-    const lineData = ref([0.0, 0.0, 1.0, 0.0]);
+    const lineData = ref([0.0, 0.0, 1.0, 1.0]);
     const picked = ref('');
     let oldx = 0;
     let oldy = 0;
