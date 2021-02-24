@@ -20,9 +20,24 @@ class Renderer {
     this.count--;
   }
 
-  render() {
+  renderAll() {
     for (const obj of this.objectList) {
       obj.draw();
+    }
+  }
+
+  render(id: number) {
+    for (let i = 0; i < this.objectList.length; i++) {
+      if (this.objectList[i].id === id) {
+        this.objectList[i].draw();
+        break;
+      }
+    }
+  }
+
+  renderTex(selectProgram: WebGLProgram) {
+    for (const obj of this.objectList) {
+      obj.drawSelect(selectProgram);
     }
   }
 }
