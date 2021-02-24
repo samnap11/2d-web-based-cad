@@ -1,5 +1,15 @@
 <template>
-  <Canvas />
+<div class = "container">
+<h3>Mari Menggambar</h3>
+  <div class = "content-container">
+    <div class = "content">
+    <h3>Kontol</h3>
+    </div>
+  </div>
+  <div class = "canva-container">
+    <Canvas />
+  </div>
+</div>
 </template>
 
 <script lang="ts">
