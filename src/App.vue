@@ -9,6 +9,7 @@
     <div class="canva-container">
       <Canvas />
       <Persegi />
+      <Poligon />
     </div>
   </div>
 </template>
@@ -17,12 +18,14 @@
 import { defineComponent, onMounted } from 'vue';
 import Persegi from './components/Persegi.vue';
 import Canvas from './components/Canvas.vue';
+import Poligon from './components/Poligon.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     Persegi,
     Canvas,
+    Poligon,
   },
   setup() {
     onMounted(() => {
