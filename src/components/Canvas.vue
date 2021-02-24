@@ -18,7 +18,8 @@ import { initShaderFiles } from '../loaders/shader';
 export default defineComponent({
   name: 'Canvas',
   setup() {
-    const triangleData = ref([0.1, 0.1, 1.0, 0.0, 0.0, 1.0]);
+    // const triangleData = ref([0.1, 0.1, 1.0, 0.0, 1.0, 1.0]);
+    const lineData = ref([0.0, 0.0, 1.0, 0.0]);
 
     onMounted(async () => {
       const canvas = document.getElementById('mycanvas') as HTMLCanvasElement;
@@ -36,22 +37,14 @@ export default defineComponent({
       gl.clearColor(1, 1, 1, 1);
       gl.clear(gl.COLOR_BUFFER_BIT);
 
-      const glObject = new GLObject(0, program, gl);
-      glObject.setVertexArray(triangleData.value);
-      glObject.setPosition(0, 0);
-      glObject.setRotation(0);
-      glObject.setScale(1, 1);
-      glObject.bind();
-
       const glObject2 = new GLObject(0, program, gl);
-      glObject2.setVertexArray(triangleData.value);
+      glObject2.setVertexArray(lineData.value);
       glObject2.setPosition(0, 0);
       glObject2.setRotation(180);
       glObject2.setScale(1, 1);
       glObject2.bind();
 
       const renderer = new Renderer();
-      renderer.addObject(glObject);
       renderer.addObject(glObject2);
       renderer.render();
     });
