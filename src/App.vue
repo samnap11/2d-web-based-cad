@@ -1,15 +1,15 @@
 <template>
-  <Canvas />
+  <Poligon />
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue';
-import Canvas from './components/Canvas.vue';
+import Poligon from './components/Poligon.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    Canvas,
+    Poligon,
   },
   setup() {
     onMounted(() => {
