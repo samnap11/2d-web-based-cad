@@ -1,5 +1,14 @@
 <template>
   <Canvas />
+  <div class = "container">
+  <div class = "content-container">
+    <div class = "content">
+    </div>
+  </div>
+  <div class = "canva-container">
+    <Canvas />
+  </div>
+</div>
 </template>
 
 <script lang="ts">
