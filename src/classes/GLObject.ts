@@ -104,8 +104,11 @@ class GLObject {
     gl.vertexAttribPointer(vertexPosition, 2, gl.FLOAT, false, 0, 0);
     gl.uniformMatrix3fv(uniformPosition, false, this.projectionMatrix);
     gl.uniform4fv(uniformColor, [1.0, 0.0, 0.0, 1.0]);
-    //gl.drawArrays(gl.TRIANGLES, 0, this.vertexArr.length / 2);
-    gl.drawArrays(gl.LINES, 0, this.vertexArr.length /2);
+    if(this.vertexArr.length <= 4){
+      gl.drawArrays(gl.LINES, 0, this.vertexArr.length /2);
+    }//else if(this.vertexArr.length > 4){
+    //  gl.drawArrays(gl.TRIANGLE_FAN, 0, this.vertexArr.length / 2);
+    //}  
   }
 }
 
