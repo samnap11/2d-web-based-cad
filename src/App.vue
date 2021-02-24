@@ -1,14 +1,27 @@
 <template>
-  <Canvas />
+  <div class="container">
+    <h3>Mari Menggambar</h3>
+    <div class="content-container">
+      <div class="content">
+        <h3></h3>
+      </div>
+    </div>
+    <div class="canva-container">
+      <Canvas />
+      <Persegi />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue';
+import Persegi from './components/Persegi.vue';
 import Canvas from './components/Canvas.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
+    Persegi,
     Canvas,
   },
   setup() {

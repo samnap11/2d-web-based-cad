@@ -1,33 +1,44 @@
 <template>
-  <Suspense>
-    <template #default>
-      <div>
-        <input type="radio" id="transformLine" value="1" v-model="picked" />
-        <label for="transformLine">Geser</label>
-        <input type="radio" id="rotateLine" value="2" v-model="picked" />
-        <label for="rotateLine">Rotate</label>
-        <input type="radio" id="scaleLine" value="3" v-model="picked" />
-        <label for="scaleLine">Scale</label>
-        <canvas id="mycanvasLine" width="1000" height="1000"></canvas>
-      </div>
-    </template>
-    <template #fallback>
-      <h3>Loading...</h3>
-    </template>
-  </Suspense>
+  <div></div>
+  <div>
+    <Suspense>
+      <template #default>
+        <div>
+          <input type="radio" id="transformSq" value="1" v-model="picked" />
+          <label for="transformSq">Geser</label>
+          <input type="radio" id="rotateSq" value="2" v-model="picked" />
+          <label for="rotateSq">Rotate</label>
+          <input type="radio" id="scaleSq" value="3" v-model="picked" />
+          <label for="scaleSq">Scale</label>
+          <canvas id="mycanvasSq" width="1000" height="1000"></canvas>
+        </div>
+      </template>
+      <template #fallback>
+        <h3>Loading...</h3>
+      </template>
+    </Suspense>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, onUpdated } from 'vue';
+import GLObject from '../classes/GLObject';
 import Renderer from '../classes/Renderer';
 import { initShaderFiles } from '../loaders/shader';
-import GLObjectInput from '../utils/GLObjectInput';
-import { drawTriangle } from '../utils/draw';
 
 export default defineComponent({
   name: 'Canvas',
   setup() {
-    const lineData = ref([200.0, 200.0, 400.0, 200.0]);
+    const squareData = ref([
+      400.0,
+      400.0,
+      200.0,
+      400.0,
+      200.0,
+      200.0,
+      400.0,
+      200.0,
+    ]);
     const picked = ref('');
     let oldx = 0;
     let oldy = 0;
@@ -37,11 +48,8 @@ export default defineComponent({
     let THETA = 0;
 
     onMounted(async () => {
-      const canvas = document.getElementById(
-        'mycanvasLine'
-      ) as HTMLCanvasElement;
+      const canvas = document.getElementById('mycanvasSq') as HTMLCanvasElement;
       const gl = canvas.getContext('webgl2') as WebGL2RenderingContext;
-
       const program = await initShaderFiles(
         gl,
         'draw-vert.glsl',
@@ -71,20 +79,14 @@ export default defineComponent({
         },
         false
       );
-
-      gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
       gl.clearColor(1, 1, 1, 1);
       gl.clear(gl.COLOR_BUFFER_BIT);
-
-      const glObject0Config: GLObjectInput = {
-        id: 0,
-        vertexArr: lineData.value,
-        position: [0, 0],
-        rotation: 0,
-        scale: [1, 1],
-      };
-
-      const glObject = drawTriangle(glObject0Config, program, gl);
+      const glObject = new GLObject(0, program, gl);
+      glObject.setVertexArray(squareData.value);
+      glObject.setPosition(0, 0);
+      glObject.setRotation(0);
+      glObject.setScale(1, 1);
+      glObject.bind();
       const renderer = new Renderer();
       renderer.addObject(glObject);
       renderer.render(glObject.id);
@@ -102,7 +104,8 @@ export default defineComponent({
             renderer.addObject(glObject);
             renderer.render(glObject.id);
           } else if (picked.value == '2') {
-            THETA += (e.pageX - oldx) * 2 * Math.PI;
+            THETA += ((e.pageX - oldx) * 2 * Math.PI) / canvas.width;
+            console.log(THETA);
             glObject.setRotation(THETA);
             glObject.bind();
             const renderer = new Renderer();
@@ -132,3 +135,4 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="css"></style>
