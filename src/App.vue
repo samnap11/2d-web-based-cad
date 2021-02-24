@@ -2,20 +2,29 @@
   <div class="container">
     <h3>Mari Menggambar</h3>
     <div class="content-container">
-      <div class="content">
-        <h3></h3>
-      </div>
+      <input type="radio" id="garis" value="1" v-model="draw" />
+      <label for="garis">Garis</label>
+      <input type="radio" id="persegi" value="2" v-model="draw" />
+      <label for="persegi">Persegi</label>
+      <input type="radio" id="poligon" value="3" v-model="draw" />
+      <label for="poligon">Poligon</label>
     </div>
-    <div class="canva-container">
-      <Canvas />
-      <Persegi />
-      <Poligon />
+    <div>
+      <template v-if="draw === '1'">
+        <Canvas />
+      </template>
+      <template v-else-if="draw === '2'">
+        <Persegi />
+      </template>
+      <template v-else-if="draw === '3'">
+        <Poligon />
+      </template>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent, onMounted, onUpdated, ref } from 'vue';
 import Persegi from './components/Persegi.vue';
 import Canvas from './components/Canvas.vue';
 import Poligon from './components/Poligon.vue';
@@ -28,9 +37,14 @@ export default defineComponent({
     Poligon,
   },
   setup() {
+    const draw = ref('');
     onMounted(() => {
       console.log('App mounted');
     });
+    onUpdated(() => {
+      console.log(draw);
+    });
+    return { draw };
   },
 });
 </script>
