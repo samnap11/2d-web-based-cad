@@ -93,8 +93,8 @@ export default defineComponent({
         (e) => {
           if (!drag) return false;
           if (picked.value == '1') {
-            posx = (e.pageX - oldx) / 1000;
-            posy = (oldy - e.pageY) / 1000;
+            posx = (e.pageX - oldx) / 2;
+            posy = (oldy - e.pageY) / 2;
             console.log(posx, posy);
             glObject.setPosition(posx, posy);
             glObject.bind();
