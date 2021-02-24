@@ -30,7 +30,7 @@ import { initShaderFiles } from '../loaders/shader';
 export default defineComponent({
   name: 'Canvas',
   setup() {
-    const triangleData = ref([0.1, 0.1, 1.0, 0.0, 0.0, 1.0]);
+    const triangleData = ref([-0.3, -0.3, -0.3, 0.3, 0.3, 0.3,0.3,-0.3]);
     const picked = ref('');
     let oldx = 0;
     let oldy = 0;
@@ -87,7 +87,8 @@ export default defineComponent({
           renderer.render();
 
         }else if(picked.value == '2'){
-          THETA += ((e.pageX-oldx)*2*Math.PI);
+          THETA += ((e.pageX-oldx)*2*Math.PI)/canvas.width;
+          console.log(THETA);
           glObject.setRotation(THETA);
           glObject.bind();
           const renderer = new Renderer();

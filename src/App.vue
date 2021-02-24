@@ -7,19 +7,19 @@
     </div>
   </div>
   <div class = "canva-container">
-    <Canvas />
+    <Persegi />
   </div>
 </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue';
-import Canvas from './components/Canvas.vue';
+import Persegi from './components/Persegi.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    Canvas,
+    Persegi,
   },
   setup() {
     onMounted(() => {
